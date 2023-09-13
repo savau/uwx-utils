@@ -16,11 +16,10 @@ while true; do
       REMOTE_COMMAND="cd ~/$2; \$SHELL -l"
       shift 2;;
     --nix-shell )
-      REMOTE_COMMAND="nix-shell --packages nodejs chromium reuse pre-commit node2nix --command \"zsh -i -is eval 'cd $2'\""
+      REMOTE_COMMAND="cd $2 && nix-shell"
       shift 2;;
     --develop )
-      # REMOTE_COMMAND="zsh -i -is eval 'cd $2; develop'"
-      REMOTE_COMMAND="nix-shell --packages nodejs chromium reuse pre-commit node2nix --command \"cd $2 && develop\""
+      REMOTE_COMMAND="cd $2 && nix-shell --command develop"
       shift 2;;
     --dont-check-connection )
       DO_CHECK_CONNECTION=false
